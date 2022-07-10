@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { LoginIfNoAuthGuard } from './login-if-no-auth.guard';
+import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
-  { path: 'landing', component: HomeComponent },
+  { path: 'landing', component: LandingComponent },
   {
     path: 'home',
     component: HomeComponent,

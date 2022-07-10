@@ -71,4 +71,7 @@ export class AuthService {
     }
     return false;
   }
+  get token(): string | null {
+    return localStorage.getItem('jwt') || null;
+  }
 }

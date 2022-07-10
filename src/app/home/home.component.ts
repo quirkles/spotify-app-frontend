@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { SpotifyApiService } from '../spotify-api.service';
 
 @Component({
   selector: 'app-home',
@@ -7,20 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
+  constructor(private spotifyApiService: SpotifyApiService) {}
 
   ngOnInit(): void | Promise<boolean> {
-    const storageToken = localStorage.getItem('jwt');
-    if (storageToken && storageToken.length) {
-      return this.router.navigateByUrl('/home');
-    }
-    this.activatedRoute.queryParams.subscribe((params) => {
-      const queryParams = params['token'];
-      if (queryParams && queryParams.length) {
-        localStorage.setItem('jwt', queryParams);
-        return this.router.navigateByUrl('/home');
-      }
-      return this.router.navigateByUrl('/login');
-    });
+    this.spotifyApiService.getPersonalData().then((resp) => console.log(resp));
   }
 }
