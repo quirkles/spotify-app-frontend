@@ -1,0 +1,134 @@
+/*
+Template Name: Ubold - Responsive Bootstrap 4 Admin Dashboard
+Author: CoderThemes
+Version: 5.0.0
+Website: https://coderthemes.com/
+Contact: support@coderthemes.com
+File: Main Css File
+*/
+
+
+// Prefix for :root CSS variables
+
+$variable-prefix:             'ct-';
+
+//Fonts
+@import "src/assets/theme/scss/custom/fonts/fonts";
+
+//Core files
+@import "./node_modules/bootstrap/scss/functions";
+@import "./node_modules/bootstrap/scss/variables";
+@import "src/assets/theme/scss/config/custom-variables";
+@import "src/assets/theme/scss/config/dark-mode";
+@import "src/assets/theme/scss/config/light-mode";
+@import "src/assets/theme/scss/config/variables";
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+//Components
+@import "src/assets/theme/scss/custom/components/accordions";
+@import "src/assets/theme/scss/custom/components/alert";
+@import "src/assets/theme/scss/custom/components/badge";
+@import "src/assets/theme/scss/custom/components/breadcrumb";
+@import "src/assets/theme/scss/custom/components/buttons";
+@import "src/assets/theme/scss/custom/components/card";
+@import "src/assets/theme/scss/custom/components/dropdown";
+@import "src/assets/theme/scss/custom/components/forms";
+@import "src/assets/theme/scss/custom/components/modal";
+@import "src/assets/theme/scss/custom/components/nav";
+@import "src/assets/theme/scss/custom/components/pagination";
+@import "src/assets/theme/scss/custom/components/popover";
+@import "src/assets/theme/scss/custom/components/progress";
+@import "src/assets/theme/scss/custom/components/reboot";
+@import "src/assets/theme/scss/custom/components/tables";
+@import "src/assets/theme/scss/custom/components/type";
+@import "src/assets/theme/scss/custom/components/utilities";
+
+
+// Structure
+@import "src/assets/theme/scss/custom/structure/general";
+@import "src/assets/theme/scss/custom/structure/left-menu";
+@import "src/assets/theme/scss/custom/structure/topbar";
+@import "src/assets/theme/scss/custom/structure/page-head";
+@import "src/assets/theme/scss/custom/structure/footer";
+@import "src/assets/theme/scss/custom/structure/right-sidebar";
+@import "src/assets/theme/scss/custom/structure/layouts";
+@import "src/assets/theme/scss/custom/structure/horizontal-nav";
+@import "src/assets/theme/scss/custom/structure/two-column-menu";
+
+
+//Components
+@import "src/assets/theme/scss/custom/components/avatar";
+@import "src/assets/theme/scss/custom/components/helper";
+@import "src/assets/theme/scss/custom/components/social";
+@import "src/assets/theme/scss/custom/components/widgets";
+@import "src/assets/theme/scss/custom/components/custom-checkbox";
+@import "src/assets/theme/scss/custom/components/ribbons";
+@import "src/assets/theme/scss/custom/components/print";
+@import "src/assets/theme/scss/custom/components/preloader";
+
+////Pages
+@import "src/assets/theme/scss/custom/pages/authentication";
+//@import "src/assets/theme/scss/custom/pages/components-demo";
+//@import "src/assets/theme/scss/custom/pages/error";
+//@import "src/assets/theme/scss/custom/pages/logout";
+//@import "src/assets/theme/scss/custom/pages/faq";
+//@import "src/assets/theme/scss/custom/pages/maintenance";
+//@import "src/assets/theme/scss/custom/pages/timeline";
+//@import "src/assets/theme/scss/custom/pages/email";
+//@import "src/assets/theme/scss/custom/pages/sitemap";
+//@import "src/assets/theme/scss/custom/pages/search-results";
+//@import "src/assets/theme/scss/custom/pages/pricing";
+//@import "src/assets/theme/scss/custom/pages/gallery";
+//@import "src/assets/theme/scss/custom/pages/coming-soon";
+//@import "src/assets/theme/scss/custom/pages/profile";
+//@import "src/assets/theme/scss/custom/pages/task";
+//@import "src/assets/theme/scss/custom/pages/kanbanboard";
+//@import "src/assets/theme/scss/custom/pages/ecommerce";
+//@import "src/assets/theme/scss/custom/pages/order-detail";
+
+//
+//// Plugins
+//@import "src/assets/theme/scss/custom/plugins/waves";
+//@import "src/assets/theme/scss/custom/plugins/apexcharts";
+//@import "src/assets/theme/scss/custom/plugins/ion-rangeslider";
+//@import "src/assets/theme/scss/custom/plugins/calendar";
+//@import "src/assets/theme/scss/custom/plugins/colorpicker";
+//@import "src/assets/theme/scss/custom/plugins/sparkline-chart";
+//@import "src/assets/theme/scss/custom/plugins/datatable";
+//@import "src/assets/theme/scss/custom/plugins/daterange";
+//@import "src/assets/theme/scss/custom/plugins/form-wizard";
+//@import "src/assets/theme/scss/custom/plugins/select2";
+//@import "src/assets/theme/scss/custom/plugins/slimscroll";
+//@import "src/assets/theme/scss/custom/plugins/toaster";
+//@import "src/assets/theme/scss/custom/plugins/sweetalert";
+//@import "src/assets/theme/scss/custom/plugins/selectize";
+//@import "src/assets/theme/scss/custom/plugins/tippy";
+//@import "src/assets/theme/scss/custom/plugins/nestable-list";
+//@import "src/assets/theme/scss/custom/plugins/hopscotch";
+//@import "src/assets/theme/scss/custom/plugins/flot";
+//@import "src/assets/theme/scss/custom/plugins/morris";
+//@import "src/assets/theme/scss/custom/plugins/chartjs";
+//@import "src/assets/theme/scss/custom/plugins/chartist";
+//@import "src/assets/theme/scss/custom/plugins/c3";
+//@import "src/assets/theme/scss/custom/plugins/ricksaw";
+//@import "src/assets/theme/scss/custom/plugins/responsive-table";
+//@import "src/assets/theme/scss/custom/plugins/footables";
+//@import "src/assets/theme/scss/custom/plugins/bootstrap-tables";
+//@import "src/assets/theme/scss/custom/plugins/tablesaw";
+//@import "src/assets/theme/scss/custom/plugins/jsgrid";
+//@import "src/assets/theme/scss/custom/plugins/multiple-select";
+//@import "src/assets/theme/scss/custom/plugins/autocomplete";
+//@import "src/assets/theme/scss/custom/plugins/bootstrap-touchspin";
+//@import "src/assets/theme/scss/custom/plugins/parsley";
+//@import "src/assets/theme/scss/custom/plugins/flatpickr";
+//@import "src/assets/theme/scss/custom/plugins/clockpicker";
+//@import "src/assets/theme/scss/custom/plugins/quilljs-editor";
+//@import "src/assets/theme/scss/custom/plugins/dropzone";
+//@import "src/assets/theme/scss/custom/plugins/dropify";
+//@import "src/assets/theme/scss/custom/plugins/x-editable";
+//@import "src/assets/theme/scss/custom/plugins/cropper";
+//@import "src/assets/theme/scss/custom/plugins/google-maps";
+//@import "src/assets/theme/scss/custom/plugins/vector-maps";
+//@import "src/assets/theme/scss/custom/plugins/mapeal-maps";
+//@import "src/assets/theme/scss/custom/plugins/datepicker";
+//@import "src/assets/theme/scss/custom/plugins/dragula";
