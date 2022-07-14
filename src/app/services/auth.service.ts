@@ -74,4 +74,18 @@ export class AuthService {
   get token(): string | null {
     return localStorage.getItem('jwt') || null;
   }
+
+  get userSpotifyId(): string | null {
+    const storageToken = localStorage.getItem('jwt');
+    if (storageToken && storageToken.length) {
+      let payload: JwtPayload;
+      try {
+        payload = decode(storageToken) as JwtPayload;
+        return payload['userSpotifyId'] ?? null;
+      } catch (e) {
+        return null;
+      }
+    }
+    return null;
+  }
 }
