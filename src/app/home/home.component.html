@@ -1,2 +1,2 @@
-<p>{{mySpotifyData?.display_name}}</p>
-<img src="{{(mySpotifyData?.images || [])[0]?.url}}" alt="">
+<p>{{(mySpotifyData$ | async)?.display_name}}</p>
+<img src="{{((mySpotifyData$ | async)?.images || [])[0]?.url}}" alt="">

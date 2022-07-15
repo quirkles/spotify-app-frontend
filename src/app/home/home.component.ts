@@ -5,9 +5,11 @@ import { SpotifyApiService } from '../services/spotify/spotify-api.service';
 import { AuthService } from '../services/auth.service';
 
 import { SpotifyUser } from '../services/spotify/types';
-import { setUserData } from '../store/user.actions';
-import { UserState } from '../store/users.reducer';
+import { setUserData } from '../store/users/user.actions';
+import {AppStore, UserState} from '../store';
 import { Router } from '@angular/router';
+import { selectById } from '../store/users/users.selectors';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,22 +17,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  mySpotifyData: Partial<SpotifyUser> = {};
+  mySpotifyData$: Observable<Partial<SpotifyUser>> = of({});
   constructor(
     private spotifyApiService: SpotifyApiService,
     private authService: AuthService,
     private router: Router,
-    private store: Store<{ users: UserState }>
+    private store: Store<AppStore>
   ) {
     const userSpotifyId = this.authService.userSpotifyId;
     if (!userSpotifyId) {
       this.router.parseUrl('/login');
     } else {
-      this.store.select('users').subscribe((userMap: UserState) => {
-        console.log("here!") //eslint-disable-line
-        console.log(userMap[userSpotifyId]) //eslint-disable-line
-        this.mySpotifyData = userMap[userSpotifyId];
-      });
+      this.mySpotifyData$ = this.store.select(selectById(userSpotifyId));
     }
   }
 

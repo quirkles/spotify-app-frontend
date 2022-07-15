@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { SpotifyUser } from '../services/spotify/types';
+import { SpotifyUser } from '../../services/spotify/types';
 
 export const setUserData = createAction(
   '[User] SetUserData',
