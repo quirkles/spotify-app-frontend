@@ -59,8 +59,6 @@ export class AuthService {
         payload = decode(storageToken) as JwtPayload;
         return (
           payload &&
-          payload['accessToken'] &&
-          payload['accessToken'].length &&
           payload['userSpotifyId'] &&
           payload['userSpotifyId'].length &&
           true

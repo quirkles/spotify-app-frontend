@@ -10,6 +10,7 @@ export class LandingComponent implements OnInit {
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): Promise<unknown> | void {
+    console.log("!!!####") //eslint-disable-line
     const storageToken = localStorage.getItem('jwt');
     if (storageToken && storageToken.length) {
       return this.router.navigateByUrl('/home');
