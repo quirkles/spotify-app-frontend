@@ -1,2 +1,3 @@
-<p>{{(mySpotifyData$ | async)?.display_name}}</p>
-<img src="{{((mySpotifyData$ | async)?.images || [])[0]?.url}}" alt="">
+<div class="container-fluid">
+  <app-profile-card [user]="mySpotifyData$ | async"></app-profile-card>
+</div>

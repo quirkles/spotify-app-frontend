@@ -1,0 +1,17 @@
+<div>
+  <div *ngIf="!user" class="card text-center">Lodein'</div>
+  <div *ngIf="user" class="card text-center">
+    <div class="card-body">
+      <img src="{{(user.images || [])[0]?.url}}" class="rounded-circle avatar-lg img-thumbnail" alt="profile-image">
+
+      <h4 class="mb-0">{{user.display_name}}</h4>
+      <br/>
+      <p>
+        <a target="_blank" class="text-muted" href="{{user.external_urls?.spotify}}">{{user.uri}}</a>
+      </p>
+    </div>
+  </div>
+
+
+
+</div>
