@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  spotifyApiUrl: 'http://localhost:3030'
 };
 
 /*

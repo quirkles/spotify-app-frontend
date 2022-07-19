@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from '../auth.service';
-import { CONFIG } from '../../config';
 import { SpotifyUser } from './types';
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: `root`,
@@ -18,7 +18,7 @@ export class SpotifyApiService {
 
   getPersonalData(): Promise<SpotifyUser> {
     return firstValueFrom(
-      this.httpClient.get<SpotifyUser>(`${CONFIG.apiUrl}/me`, {
+      this.httpClient.get<SpotifyUser>(`${environment.spotifyApiUrl}/me`, {
         headers: {
           authorization: `Bearer ${this.authService.token}`,
         },

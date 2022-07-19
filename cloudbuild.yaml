@@ -15,4 +15,4 @@ steps:
   - id: 'deploy image'
     name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
-    args: [ 'run', 'deploy', 'spotify-frontend', '--image', 'northamerica-northeast2-docker.pkg.dev/spotify-application-356414/spotify-frontend/spotify-fe:$COMMIT_SHA', '--region', 'northamerica-northeast2', '--memory', '128Mi', '--port', '80', '--allow-unauthenticated']
+    args: [ 'run', 'deploy', 'spotify-frontend', '--image', 'northamerica-northeast2-docker.pkg.dev/spotify-application-356414/spotify-frontend/spotify-fe:$COMMIT_SHA', '--region', 'northamerica-northeast2', '--memory', '128Mi', '--port', '80', '--allow-unauthenticated', '--cpu-throttling']

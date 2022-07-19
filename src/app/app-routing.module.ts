@@ -13,6 +13,11 @@ const routes: Routes = [
     canActivate: [LoginIfNoAuthGuard],
   },
   { path: 'login', component: LoginComponent },
+  {
+    path: '',
+    component: HomeComponent,
+    canActivate: [LoginIfNoAuthGuard],
+  },
 ];
 
 @NgModule({
