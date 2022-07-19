@@ -1,0 +1,14 @@
+
+steps:
+  # Step 1
+  - id: 'build docker image'
+    name: 'gcr.io/cloud-builders/docker'
+    args: [ 'build', '-t', 'spotify-fe:$COMMIT_SHA', '.' ]
+  # Step 2
+  - id: 'tag docker image'
+    name: 'gcr.io/cloud-builders/docker'
+    args: [ 'tag', 'spotify-fe:$COMMIT_SHA', 'northamerica-northeast2-docker.pkg.dev/spotify-application-356414/spotify-frontend/spotify-fe:$COMMIT_SHA']
+  # Step 3
+  - id: 'push docker image'
+    name: 'gcr.io/cloud-builders/docker'
+    args: [ 'push', 'northamerica-northeast2-docker.pkg.dev/spotify-application-356414/spotify-frontend/spotify-fe:$COMMIT_SHA']

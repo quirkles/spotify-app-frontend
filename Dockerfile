@@ -1,26 +1,33 @@
-# STEP 1 building your app
-FROM node:alpine as builder
-RUN apk update && apk add --no-cache make git
-# a) Create app directory
-WORKDIR /app
-# b) Create app/nginx directory and copy default.conf to it
-WORKDIR /app/nginx
-COPY nginx/conf.d/default.conf /app/nginx/
-# c) Install app dependencies
-COPY package.json yarn.lock /app/
-RUN cd /app && npm set progress=false && yarn install
-# d) Copy project files into the docker image and build your app
-COPY .  /app
-RUN cd /app && npm run build
+### STAGE 1:BUILD ###
+# Defining a node image to be used as giving it an alias of "build"
+# Which version of Node image to use depends on project dependencies
+# This is needed to build and compile our code
+# while generating the docker image
+FROM node:18-alpine AS build
 
-# STEP 2 build a small nginx image
-FROM nginx:alpine
-# a) Remove default nginx code
-RUN rm -rf /usr/share/nginx/html/*
-# b) From 'builder' copy your site to default nginx public folder
-COPY --from=builder /app/dist/spotify-app /usr/share/nginx/html
-# c) copy your own default nginx configuration to the conf folder
-RUN rm -rf /etc/nginx/conf.d/default.conf
-COPY --from=builder /app/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf
+RUN apk --no-cache add --virtual native-deps \
+    g++ gcc libgcc libstdc++ linux-headers make python3 && \
+    npm install --quiet node-gyp -g
+
+# Create a Virtual directory inside the docker image
+WORKDIR /dist/src/app
+# Copy files to virtual directory
+COPY package.json yarn.lock ./
+# Copy files from local machine to virtual directory in docker image
+COPY . .
+RUN yarn install
+RUN yarn run build
+
+RUN apk del native-deps
+
+
+### STAGE 2:RUN ###
+# Defining nginx image to be used
+FROM nginx:latest AS ngi
+# Copying compiled code and nginx config to different folder
+# NOTE: This path may change according to your project's output folder
+COPY --from=build /dist/src/app/dist/spotify-app /usr/share/nginx/html
+COPY /nginx.conf  /etc/nginx/conf.d/default.conf
+# Exposing a port, here it means that inside the container
+# the app will be using Port 80 while running
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
