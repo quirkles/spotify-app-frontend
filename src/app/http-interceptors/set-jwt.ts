@@ -7,7 +7,7 @@ import {finalize, Observable, tap} from 'rxjs';
 
 /** Pass untouched request through to the next request handler. */
 @Injectable()
-export class NoopInterceptor implements HttpInterceptor {
+export class SetJwtInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req)
