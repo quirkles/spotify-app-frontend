@@ -17,7 +17,9 @@ export class SetJwtInterceptor implements HttpInterceptor {
           next: (event) => {
             if(event instanceof HttpResponse) {
               console.log("####\n")
-              console.log(event.headers.keys().map(k => event.headers.getAll(k)).join('\n'))
+              console.log(event.headers.keys().map(k => {
+                `${k}: ${event.headers.getAll(k)}`
+              }).join('\n'))
               console.log("####\n")
             }
           },
