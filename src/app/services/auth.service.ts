@@ -51,6 +51,9 @@ interface JwtPayload {
   providedIn: 'root',
 })
 export class AuthService {
+  updateToken(token: string){
+    localStorage.setItem('jwt', token)
+  }
   get hasValidToken() {
     const storageToken = localStorage.getItem('jwt');
     if (storageToken && storageToken.length) {
