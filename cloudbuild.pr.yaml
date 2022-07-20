@@ -1,0 +1,21 @@
+steps:
+  - id: 'install deps'
+    name: 'node:18'
+    entrypoint: 'yarn'
+    args: [ 'install']
+
+  - id: 'compile typescript check'
+    name: 'node:18'
+    entrypoint: 'yarn'
+    args: [ 'run', 'build']
+
+  - id: 'lint'
+    name: 'node:18'
+    entrypoint: 'yarn'
+    args: [ 'run', 'lint']
+
+# testing is weird, not working yet
+#  - id: 'test'
+#    name: 'node:18'
+#    entrypoint: 'yarn'
+#    args: [ 'run', 'test']
