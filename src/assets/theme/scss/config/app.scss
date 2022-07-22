@@ -14,6 +14,7 @@ $variable-prefix:             'ct-';
 
 //Fonts
 @import "src/assets/theme/scss/custom/fonts/fonts";
+@import "src/assets/theme/scss/icons";
 
 //Core files
 @import "./node_modules/bootstrap/scss/functions";
