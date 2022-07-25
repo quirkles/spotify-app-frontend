@@ -1,0 +1,27 @@
+<a
+  class="text-{{valueFormControl.value?.length ? color : 'danger' }}"
+  (click)="startEditing()"
+  style="display: {{isEditing ? 'none' : 'inline'}}"
+>{{valueFormControl.value?.length ? valueFormControl.value : 'Empty'}}</a>
+<span class="editable-container editable-inline" style="display: {{isEditing ? 'inline-block' : 'none'}}">
+  <div>
+    <form class="form-inline editableform" (submit)="saveEdit($event)">
+      <div class="control-group">
+        <div>
+          <div class="editable-input" style="position: relative;">
+            <input #inputField type="text" class="form-control-sm form-control" style="padding-right: 24px;" [formControl]="valueFormControl"/>
+            <span class="editable-clear-x" style="display: {{valueFormControl.value?.length ? 'block' : 'none'}}" (click)="clearValue()"></span>
+          </div>
+          <div class="editable-buttons">
+            <button type="button" class="btn btn-primary editable-submit btn-sm waves-effect waves-light" (click)="saveEdit($event)">
+              <i class="mdi mdi-check"></i>
+            </button>
+            <button type="button" class="btn btn-danger editable-cancel btn-sm waves-effect" (click)="quitEditing()">
+              <i class="mdi mdi-close" ></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</span>

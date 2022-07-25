@@ -1,12 +1,7 @@
 <div class="container-fluid">
-  <button *ngIf="!isCreating" type="button" class="btn btn-primary waves-effect waves-light" (click)="toggleIsCreating()">
-    <span class="btn-label"><i class="mdi mdi-heart-plus"></i></span>Create Mood
+  <app-editable [value]="newMoodName" (editStop)="stopEditing()" (editStart)="startEditing()" (newValue)="updateName($event)"></app-editable>
+  <button *ngIf="!idEditing" class="btn btn-xs btn-primary" (click)="createMood()">
+    <span class="btn-label"><i class="mdi mdi-music"></i></span>
+    add mood
   </button>
-  <div *ngIf="isCreating" class="btn-group">
-    <div class="">
-      <input type="text" class="form-control" [formControl]="newMoodName">
-    </div>
-    <button type="button" class="btn btn-warning waves-effect waves-light" (click)="toggleIsCreating()">Cancel</button>
-    <button type="button" class="btn btn-success waves-effect waves-light" [disabled]="!newMoodName.value?.length">Confirm Name</button>
-  </div>
 </div>

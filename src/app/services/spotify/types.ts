@@ -26,3 +26,7 @@ export interface SpotifyUser {
   type: string;
   uri: string;
 }
+
+export interface Mood {
+  name: string
+}
