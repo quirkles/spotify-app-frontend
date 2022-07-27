@@ -1,4 +1,5 @@
 import {firstValueFrom} from 'rxjs';
+import { v4 } from 'uuid';
 
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
@@ -30,7 +31,8 @@ export class SpotifyApiService {
   createMood(moodName: string): Promise<Mood> {
     return firstValueFrom(
       this.httpClient.post<Mood>(`${environment.spotifyApiUrl}/mood`, {
-        name: moodName
+        name: moodName,
+        id: v4()
       }, {
         headers: {
           authorization: `Bearer ${this.authService.token}`,
