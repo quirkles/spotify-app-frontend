@@ -64,6 +64,10 @@ const nouns = [
   'river',
 ]
 
+function capitalize (str: string): string {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 function getRandomElementFromArray<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -75,5 +79,5 @@ export function generateRandomName(): string {
   }
   components.push(getRandomElementFromArray(positiveAdjectives))
   components.push(getRandomElementFromArray(nouns))
-  return components.join(' ')
+  return capitalize(components.join(' '))
 }

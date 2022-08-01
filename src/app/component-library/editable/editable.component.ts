@@ -19,6 +19,7 @@ import {Color} from "../../util";
 })
 export class EditableComponent implements OnInit, OnChanges {
   @Input() value: string | null = null
+  @Input() emptyString: string = "Empty"
   @Input() color: Color = Color.primary
   @Output() newValue = new EventEmitter<string>()
   @Output() editStart = new EventEmitter<void>()

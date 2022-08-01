@@ -1,3 +1,7 @@
-<div>
-  <app-mood-list-item *ngFor="let mood of moods" [mood]="mood"></app-mood-list-item>
+<div (appResized)="handleElResize($event)">
+  <app-mood-list-item
+    *ngFor="let mood of moods"
+    [mood]="mood"
+    [slidesPerView]="slidesPerGroupInItems"
+  ></app-mood-list-item>
 </div>

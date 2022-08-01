@@ -8,4 +8,5 @@ export interface FetchMoodParams extends Record<string, unknown> {
 export interface UpdateMoodPayload {
   name?: string
   playCount?: number
+  description?: string
 }

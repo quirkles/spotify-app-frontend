@@ -1,17 +1,23 @@
 <div class="card border-{{accentColor}} border mb-3">
   <div class="card-body">
-    <span class="badge badge-outline-{{accentColor}} rounded-pill play-count">{{mood.playCount}}</span>
     <div>
       <div class="info-section">
-        <h4 class="card-title text-{{accentColor}}">
-          <app-editable [value]="mood.name" [color]="accentColor" (newValue)="handleNameChange($event)"></app-editable>
+        <h4 class="card-title">
+          <app-editable [value]="mood.name" [color]="secondaryColor" (newValue)="handleNameChange($event)"></app-editable>
         </h4>
-        <p class="card-text">{{mood.description || "No description yet!"}}</p>
+        <div>
+          <app-editable
+            [value]="mood.description || null"
+            [color]="tertiaryColor"
+            emptyString="No description yet!"
+            (newValue)="handleDescriptionChange($event)"
+          ></app-editable>
+        </div>
       </div>
-      <div class="artist-thumb-section">
+      <div class="artist-thumb-section" style="width: {{slidesPerView * 120}}px">
         <swiper
           [autoplay]="{ delay: speed, pauseOnMouseEnter: true, disableOnInteraction: false }"
-          [slidesPerView]="5"
+          [slidesPerView]="slidesPerView"
           [slidesPerGroup]="1"
           [centeredSlides]="true"
           [spaceBetween]="0"
@@ -22,7 +28,8 @@
         </swiper>
       </div>
       <div class="controls">
-        <div class="btn btn-outline-{{accentColor}}"><i class="mdi mdi-play-circle-outline"></i></div>
+        <div class="btn btn-outline-{{accentColor}}"><i class="mdi mdi-play-outline"></i></div>
+        <div class="btn btn-outline-{{tertiaryColor}}"><i class="mdi mdi-playlist-edit"></i></div>
       </div>
     </div>
   </div>

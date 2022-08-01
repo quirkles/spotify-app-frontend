@@ -23,6 +23,7 @@ import {AddMoodComponent} from './add-mood/add-mood.component';
 import {ComponentLibraryModule} from "./component-library/component-library.module";
 import { MoodListComponent } from './mood-list/mood-list.component';
 import { MoodListItemComponent } from './mood-list/mood-list-item/mood-list-item.component';
+import { ResizeDirective } from './resize.directive';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MoodListItemComponent } from './mood-list/mood-list-item/mood-list-item
     AddMoodComponent,
     MoodListComponent,
     MoodListItemComponent,
+    ResizeDirective,
   ],
   imports: [
     ...appStores,
@@ -49,7 +51,7 @@ import { MoodListItemComponent } from './mood-list/mood-list-item/mood-list-item
   providers: [
     httpInterceptorProviders
   ],
-  exports: [ComponentLibraryModule],
+  exports: [ComponentLibraryModule, ResizeDirective],
   bootstrap: [AppComponent],
 })
 

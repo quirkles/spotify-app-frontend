@@ -21,8 +21,11 @@ function getRandomInt(min: number, max: number): number {
 })
 export class MoodListItemComponent implements OnInit {
   @Input() mood!: Mood
+  @Input() slidesPerView = 2
 
   accentColor!: Color
+  secondaryColor!: Color
+  tertiaryColor!: Color
   initialSlide!: number
   speed!: number
 
@@ -33,13 +36,21 @@ export class MoodListItemComponent implements OnInit {
     this.store.dispatch(updateMoodRequest({moodId: this.mood.id, updatePayload: {name: newName}}))
   }
 
+  handleDescriptionChange(newDescription: string): void {
+    this.store.dispatch(updateMoodRequest({moodId: this.mood.id, updatePayload: {description: newDescription}}))
+  }
+
   ngOnInit() {
-    const n = parseInt(this.mood.id.replace(/\D/g, "").substring(3, 6), 10)
+    const idDigits = this.mood.id.replace(/\D/g, "")
+    const seedNumber = parseInt(idDigits.substring(5, 6), 10)
+    const increment1 = parseInt(idDigits.charAt(2), 10)
+    const increment2 = parseInt(idDigits.charAt(3), 10)
+    const n = parseInt(this.mood.id.replace(/\D/g, "").substring(5, 6), 10)
     const colors = Object.values(Color);
-    this.accentColor = colors[n % colors.length]
+    this.accentColor = colors[seedNumber % colors.length]
+    this.secondaryColor = colors[(n +increment1) % colors.length]
+    this.tertiaryColor = colors[(n +increment2) % colors.length]
     this.initialSlide = getRandomInt(0, this.mood.artists.length)
     this.speed = getRandomInt(1500, 2500)
   }
-
-
 }
