@@ -1,7 +1,8 @@
-<div class="container-fluid">
-  <app-editable [value]="newMoodName" (editStop)="stopEditing()" (editStart)="startEditing()" (newValue)="updateName($event)"></app-editable>
-  <button *ngIf="!idEditing" class="btn btn-xs btn-primary" (click)="createMood()">
-    <span class="btn-label"><i class="mdi mdi-music"></i></span>
-    add mood
+<div>
+  <h2>
+    <app-editable [value]="newMoodName" (editStop)="stopEditing()" (editStart)="startEditing()" (newValue)="updateName($event)"></app-editable>
+  </h2>
+  <button *ngIf="!isEditing" class="btn btn-xs btn-success" (click)="createMood()">
+    add mood +
   </button>
 </div>

@@ -1,10 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { UserState } from './users.reducer';
-import { usersFeatureKey } from './index';
+
+export const usersFeatureKey = 'users';
 
 const selector = createFeatureSelector<UserState>(usersFeatureKey);
 
 export const selectById = (userSpotifyId: string) =>
-  createSelector(selector, (users) => {
-    return users[userSpotifyId];
+  createSelector(selector, (userState) => {
+    return userState[userSpotifyId];
   });

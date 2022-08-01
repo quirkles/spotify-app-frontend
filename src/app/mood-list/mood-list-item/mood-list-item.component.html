@@ -1,0 +1,29 @@
+<div class="card border-{{accentColor}} border mb-3">
+  <div class="card-body">
+    <span class="badge badge-outline-{{accentColor}} rounded-pill play-count">{{mood.playCount}}</span>
+    <div>
+      <div class="info-section">
+        <h4 class="card-title text-{{accentColor}}">
+          <app-editable [value]="mood.name" [color]="accentColor" (newValue)="handleNameChange($event)"></app-editable>
+        </h4>
+        <p class="card-text">{{mood.description || "No description yet!"}}</p>
+      </div>
+      <div class="artist-thumb-section">
+        <swiper
+          [autoplay]="{ delay: speed, pauseOnMouseEnter: true, disableOnInteraction: false }"
+          [slidesPerView]="5"
+          [slidesPerGroup]="1"
+          [centeredSlides]="true"
+          [spaceBetween]="0"
+          [loop]="true"
+          [initialSlide]=initialSlide
+        >
+          <ng-template swiperSlide *ngFor="let artist of mood.artists"><img src="{{artist.imageUrl}}" alt="{{artist.name}}"></ng-template>
+        </swiper>
+      </div>
+      <div class="controls">
+        <div class="btn btn-outline-{{accentColor}}"><i class="mdi mdi-play-circle-outline"></i></div>
+      </div>
+    </div>
+  </div>
+</div>

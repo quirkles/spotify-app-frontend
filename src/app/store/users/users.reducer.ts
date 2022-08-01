@@ -1,14 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
 import { assoc, mergeDeepRight, propOr } from 'ramda';
 
-import { setUserData } from './user.actions';
-import { SpotifyUser } from '../../services/spotify/types';
+import { setUserData } from './users.actions';
+import { SpotifyUser } from '../../services/spotify';
 
 export interface UserState {
   [userSpotifyId: string]: Partial<SpotifyUser>;
 }
 
-export const initialState: UserState = {};
+const initialState: UserState = {};
 
 export const usersReducer = createReducer(
   initialState,

@@ -10,15 +10,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {FormControl} from "@angular/forms";
-
-enum Color {
-  'primary' = 'primary',
-  'info' = 'info',
-  'success' = 'primary',
-  'warning' = 'primary',
-  'blue' = 'blue',
-  'pink' = 'pink',
-}
+import {Color} from "../../util";
 
 @Component({
   selector: 'app-editable',

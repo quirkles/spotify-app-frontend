@@ -1,39 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {generateRandomName} from "./utils";
-import {SpotifyApiService} from "../services/spotify/spotify-api.service";
+import {MoodService} from "../services/spotify";
+import {AppStore, createMoodRequest, MoodActionType} from "../store";
+import {Store} from "@ngrx/store";
+import {Actions, ofType} from "@ngrx/effects";
+import {Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-add-mood',
   templateUrl: './add-mood.component.html',
   styleUrls: ['./add-mood.component.scss']
 })
-export class AddMoodComponent {
-  isCreating = true
+export class AddMoodComponent implements OnDestroy{
+  destroyed$ = new Subject<boolean>();
+
   newMoodName: string
-  idEditing = false
-  constructor(private spotifyApiService: SpotifyApiService) {
+  isEditing = false
+  constructor(
+    private moodService: MoodService,
+    private store: Store<AppStore>,
+    private actions$: Actions
+  ) {
     this.newMoodName = generateRandomName()
+    actions$.pipe(
+      ofType(MoodActionType.CREATE_MOOD_SUCCESS),
+      takeUntil(this.destroyed$)
+    )
+      .subscribe(() => {
+        this.newMoodName = generateRandomName()
+      });
   }
 
   updateName(newName: string): void {
-    console.log(newName) //eslint-disable-line
     this.newMoodName = newName
   }
 
   startEditing(): void {
-    this.idEditing = true
+    this.isEditing = true
   }
 
   stopEditing(): void {
-    this.idEditing = false
+    this.isEditing = false
   }
 
   async createMood(): Promise<void> {
-    try {
-      await this.spotifyApiService.createMood(this.newMoodName)
-    } catch (e) {
-      console.error('Failed to create mood', (e as Error).message)
-    }
-    this.newMoodName = generateRandomName()
+    this.store.dispatch(createMoodRequest({ moodName: this.newMoodName }));
+  }
+
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 }

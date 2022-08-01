@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { SpotifyApiService } from '../services/spotify/spotify-api.service';
 import { AuthService } from '../services/auth.service';
 
-import { SpotifyUser } from '../services/spotify/types';
-import { setUserData } from '../store/users/user.actions';
-import {AppStore, UserState} from '../store';
+import {Mood, SpotifyUser, UserService} from "../services/spotify";
+import {setUserData, AppStore, selectById, fetchMoodsRequest, listMoods} from '../store';
 import { Router } from '@angular/router';
-import { selectById } from '../store/users/users.selectors';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -18,13 +15,15 @@ import { Observable, of } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   mySpotifyData$: Observable<Partial<SpotifyUser>> = of({});
+  moods$: Observable<Mood[]> = of([]);
   constructor(
-    private spotifyApiService: SpotifyApiService,
+    private userService: UserService,
     private authService: AuthService,
     private router: Router,
     private store: Store<AppStore>
   ) {
     const userSpotifyId = this.authService.userSpotifyId;
+    this.moods$ = this.store.select(listMoods())
     if (!userSpotifyId) {
       this.router.parseUrl('/login');
     } else {
@@ -33,7 +32,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void | Promise<boolean> {
-    this.spotifyApiService.getPersonalData().then((resp) =>
+    this.store.dispatch(fetchMoodsRequest({ params: {} }))
+    this.userService.getPersonalData().then((resp) =>
       this.store.dispatch(
         setUserData({
           userSpotifyId: resp.id,
