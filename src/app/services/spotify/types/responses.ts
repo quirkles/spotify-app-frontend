@@ -36,14 +36,14 @@ export interface Artist {
   spotifyUri: string;
   spotifyId: string;
   imageUrl: string;
-  moods: Mood[];
+  moods?: Mood[];
 }
 export interface Mood {
   id: string;
   name: string;
   description?: string;
   playCount: number;
-  artists: Artist[];
+  artists?: Artist[];
   createdAt: Date;
   updatedAt: Date;
 }

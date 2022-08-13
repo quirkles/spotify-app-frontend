@@ -1,18 +1,25 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Mood} from "../services/spotify";
 import {ResizedEvent} from "../resize.directive";
+import {Observable, of} from "rxjs";
+import {AppStore, fetchMoodsRequest, listMoods} from "../store";
+import {Store} from "@ngrx/store";
 
 @Component({
   selector: 'app-mood-list',
   templateUrl: './mood-list.component.html',
   styleUrls: ['./mood-list.component.scss']
 })
-export class MoodListComponent {
-  @Input() moods: Mood[] | null = []
-
+export class MoodListComponent implements OnInit {
+  moods$: Observable<Mood[]> = of([]);
   slidesPerGroupInItems = 2
 
-  constructor() {
+  constructor(private store: Store<AppStore>) {
+  }
+
+  ngOnInit() {
+    this.store.dispatch(fetchMoodsRequest({params: {}}))
+    this.moods$ = this.store.select(listMoods())
   }
 
   handleElResize(event: ResizedEvent) {

@@ -1,0 +1,14 @@
+.artist-card {
+  height: calc(100% - 24px);
+  .artist-card-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    .spacer {
+      flex-grow: 2;
+    }
+    .product-info {
+      align-self: flex-end;
+    }
+  }
+}

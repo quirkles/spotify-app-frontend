@@ -1,9 +1,6 @@
-<app-profile-card [user]="mySpotifyData$ | async"></app-profile-card>
-<div class="container-fluid">
-  <div>
-    <app-add-mood></app-add-mood>
-  </div>
-  <div>
-    <app-mood-list [moods]="moods$ | async"></app-mood-list>
-  </div>
+<div id="app-header">
+  <app-profile-card [user]="mySpotifyData$ | async"></app-profile-card>
+</div>
+<div id="app-content" class="container-fluid">
+  <router-outlet></router-outlet>
 </div>

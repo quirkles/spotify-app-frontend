@@ -16,6 +16,7 @@
 }
 
 .btn {
+    border-radius: $border-radius;
     .mdi {
         &:before {
             margin-top: -1px;
@@ -109,7 +110,7 @@
 .btn-xs {
     padding: 0.2rem 0.6rem;
     font-size: 0.75rem;
-    border-radius: 0.15rem;
+    border-radius: min($border-radius-xs, $border-radius);
     .btn-label {
       margin: -0.55rem 0.5rem -0.55rem -0.5rem;
       padding: 0.4rem 0.7rem;

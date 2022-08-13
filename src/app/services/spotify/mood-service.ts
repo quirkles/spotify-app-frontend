@@ -38,10 +38,31 @@ export class MoodService {
     })
   }
 
+  fetchMoodById(moodId: string): Observable<{ mood: Mood}> {
+    return this.httpClient.get<{ mood: Mood }>(`${environment.spotifyApiUrl}/mood/${moodId}`, {
+      headers: {
+        authorization: `Bearer ${this.authService.token}`,
+      },
+    })
+  }
+
   updateMood(moodId: string, updatePayload: UpdateMoodPayload): Observable<UpdateMoodResponse> {
     return this.httpClient.patch<UpdateMoodResponse>(
       `${environment.spotifyApiUrl}/mood/${moodId}`,
       updatePayload,
+      {
+        headers: {
+          authorization: `Bearer ${this.authService.token}`,
+        }
+      })
+    }
+
+  removeArtistFromMood(params: { moodId: string, artistId: string}): Observable<UpdateMoodResponse> {
+    const {
+      moodId, artistId
+    } = params
+    return this.httpClient.delete<{ mood: Mood }>(
+      `${environment.spotifyApiUrl}/mood/${moodId}/artist/${artistId}`,
       {
         headers: {
           authorization: `Bearer ${this.authService.token}`,

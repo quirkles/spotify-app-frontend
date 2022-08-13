@@ -1,7 +1,7 @@
 import SwiperCore, {Autoplay, Pagination} from "swiper";
 import {Component, Input, OnInit} from '@angular/core';
 import {Mood} from "../../services/spotify";
-import {Color} from "../../util";
+import {Color, colorRandomizer, convertIdToNumber} from "../../util";
 import {AppStore, updateMoodRequest} from "../../store";
 import {Store} from "@ngrx/store";
 
@@ -41,16 +41,11 @@ export class MoodListItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    const idDigits = this.mood.id.replace(/\D/g, "")
-    const seedNumber = parseInt(idDigits.substring(5, 6), 10)
-    const increment1 = parseInt(idDigits.charAt(2), 10)
-    const increment2 = parseInt(idDigits.charAt(3), 10)
-    const n = parseInt(this.mood.id.replace(/\D/g, "").substring(5, 6), 10)
-    const colors = Object.values(Color);
-    this.accentColor = colors[seedNumber % colors.length]
-    this.secondaryColor = colors[(n +increment1) % colors.length]
-    this.tertiaryColor = colors[(n +increment2) % colors.length]
-    this.initialSlide = getRandomInt(0, this.mood.artists.length)
+    const {primaryColor, secondaryColor, tertiaryColor} = colorRandomizer(convertIdToNumber(this.mood.id))
+    this.accentColor = primaryColor
+    this.secondaryColor = secondaryColor
+    this.tertiaryColor = tertiaryColor
+    this.initialSlide = getRandomInt(0, this.mood?.artists?.length || 1)
     this.speed = getRandomInt(1500, 2500)
   }
 }

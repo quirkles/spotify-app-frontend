@@ -1,0 +1,26 @@
+$spacer: 1.5rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);
+
+#mood-list-page {
+  display: flex;
+  flex-direction: column;
+    min-height: 0;
+  #add-mood-container {
+    width: fit-content;
+    margin: map-get($spacers, 4) 0;
+    padding: map-get($spacers, 3);
+    background: #ffffff;
+  }
+  #mood-list-container {
+    overflow: scroll;
+    flex: 1;
+  }
+}
+

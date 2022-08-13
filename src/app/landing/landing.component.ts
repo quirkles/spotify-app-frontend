@@ -12,13 +12,13 @@ export class LandingComponent implements OnInit {
   ngOnInit(): Promise<unknown> | void {
     const storageToken = localStorage.getItem('jwt');
     if (storageToken && storageToken.length) {
-      return this.router.navigateByUrl('/home');
+      return this.router.navigateByUrl('/moods');
     }
     this.activatedRoute.queryParams.subscribe((params) => {
       const queryParams = params['token'];
       if (queryParams && queryParams.length) {
         localStorage.setItem('jwt', queryParams);
-        return this.router.navigateByUrl('/home');
+        return this.router.navigateByUrl('/moods');
       }
       return this.router.navigateByUrl('/login');
     });

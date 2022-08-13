@@ -13,7 +13,7 @@ File: Main Css File
 $variable-prefix:             'ct-';
 
 //Fonts
-@import "src/assets/theme/scss/custom/fonts/fonts";
+//@import "src/assets/theme/scss/custom/fonts/fonts";
 @import "src/assets/theme/scss/icons";
 
 //Core files
@@ -84,7 +84,7 @@ $variable-prefix:             'ct-';
 //@import "src/assets/theme/scss/custom/pages/profile";
 //@import "src/assets/theme/scss/custom/pages/task";
 //@import "src/assets/theme/scss/custom/pages/kanbanboard";
-//@import "src/assets/theme/scss/custom/pages/ecommerce";
+@import "src/assets/theme/scss/custom/pages/ecommerce";
 //@import "src/assets/theme/scss/custom/pages/order-detail";
 
 //

@@ -24,6 +24,9 @@ import {ComponentLibraryModule} from "./component-library/component-library.modu
 import { MoodListComponent } from './mood-list/mood-list.component';
 import { MoodListItemComponent } from './mood-list/mood-list-item/mood-list-item.component';
 import { ResizeDirective } from './resize.directive';
+import { MoodDetailsComponent } from './mood-details/mood-details.component';
+import { PlaylistArtistComponent } from './artist/playlist-artist/playlist-artist.component';
+import { SuggestionArtistComponent } from './artist/suggestion-artist/suggestion-artist.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { ResizeDirective } from './resize.directive';
     MoodListComponent,
     MoodListItemComponent,
     ResizeDirective,
+    MoodDetailsComponent,
+    PlaylistArtistComponent,
+    SuggestionArtistComponent,
   ],
   imports: [
     ...appStores,

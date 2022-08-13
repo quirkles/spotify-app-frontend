@@ -3,8 +3,7 @@
   (click)="startEditing()"
   style="display: {{isEditing ? 'none' : 'inline'}}"
 >{{valueFormControl.value?.length ? valueFormControl.value : emptyString}}</a>
-<span class="editable-container editable-inline" style="display: {{isEditing ? 'inline-block' : 'none'}}">
-  <div>
+  <div class="editable-container editable-inline" style="display: {{isEditing ? 'inline-block' : 'none'}}">
     <form class="form-inline editableform" (submit)="saveEdit($event)">
       <div class="control-group">
           <div class="editable-input" style="position: relative;">
@@ -22,4 +21,3 @@
       </div>
     </form>
   </div>
-</span>

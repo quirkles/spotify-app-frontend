@@ -1,0 +1,22 @@
+<div class="card product-box artist-card">
+  <div class="card-body">
+    <div class="product-action">
+      <a class="btn btn-danger btn-xs waves-effect waves-light" (click)="handleDeleteClick()"><i class="mdi mdi-close"></i></a>
+    </div>
+    <div class="artist-card-content">
+      <div class="bg-light">
+        <img src="{{artist.imageUrl}}" alt="product-pic" class="img-fluid">
+      </div>
+      <div class="spacer"></div>
+      <div class="product-info">
+        <div class="row align-items-center">
+          <div class="col">
+            <h5 class="font-16 mt-0 sp-line-1">
+              <a target="_blank" href="{{artist.externalSpotifyUrl}}" class="text-dark">{{artist.name}}</a>
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

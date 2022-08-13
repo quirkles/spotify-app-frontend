@@ -4,19 +4,28 @@ import {HomeComponent} from './home/home.component';
 import {LoginComponent} from './login/login.component';
 import {LoginIfNoAuthGuard} from './login-if-no-auth.guard';
 import {LandingComponent} from './landing/landing.component';
+import {MoodDetailsComponent} from "./mood-details/mood-details.component";
+import {MoodListComponent} from "./mood-list/mood-list.component";
 
 const routes: Routes = [
   {path: 'landing', component: LandingComponent},
-  {
-    path: 'home',
-    component: HomeComponent,
-    canActivate: [LoginIfNoAuthGuard],
-  },
   {path: 'login', component: LoginComponent},
   {
     path: '',
     component: HomeComponent,
     canActivate: [LoginIfNoAuthGuard],
+    children: [
+      {
+        path: 'moods',
+        component: MoodListComponent,
+        canActivate: [LoginIfNoAuthGuard],
+      },
+      {
+        path: 'moods/:moodId',
+        component: MoodDetailsComponent,
+        canActivate: [LoginIfNoAuthGuard],
+      },
+    ]
   },
 ];
 

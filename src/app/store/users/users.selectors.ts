@@ -5,7 +5,7 @@ export const usersFeatureKey = 'users';
 
 const selector = createFeatureSelector<UserState>(usersFeatureKey);
 
-export const selectById = (userSpotifyId: string) =>
+export const selectUserById = (userSpotifyId: string) =>
   createSelector(selector, (userState) => {
     return userState[userSpotifyId];
   });

@@ -10,3 +10,8 @@ export const listMoods = () =>
   createSelector(selector, (moodState): Mood[] => {
     return moodState['moods'];
   });
+
+export const selectMoodById = (moodId: string) =>
+  createSelector(selector, (moodState) => {
+    return (moodState.moods || []).find(mood => mood.id === moodId) || {};
+  });

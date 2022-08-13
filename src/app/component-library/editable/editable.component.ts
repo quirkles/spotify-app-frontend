@@ -39,6 +39,7 @@ export class EditableComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if(changes['value']?.currentValue) {
      this.valueFormControl.setValue(changes['value'].currentValue)
+     this.localValue = changes['value']?.currentValue
     }
   }
 
@@ -54,7 +55,6 @@ export class EditableComponent implements OnInit, OnChanges {
   }
 
   saveEdit(event: Event) {
-    console.log('save') //eslint-disable-line
     this.localValue = this.valueFormControl.value || ''
     this.newValue.emit(this.localValue)
     this.isEditing = false
@@ -66,7 +66,6 @@ export class EditableComponent implements OnInit, OnChanges {
   }
 
   quitEditing() {
-    console.log('quit') //eslint-disable-line
     this.valueFormControl.setValue(this.localValue)
     this.isEditing = false
     this.editStop.emit()

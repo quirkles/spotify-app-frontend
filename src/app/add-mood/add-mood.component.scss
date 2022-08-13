@@ -1,4 +1,7 @@
-h2 {
-  display: inline-block;
-  margin-right: 12px;
+div {
+  display: flex;
+  align-items: center;
+  h2 {
+    margin-right: 1.5rem;
+  }
 }

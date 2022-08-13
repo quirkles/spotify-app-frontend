@@ -16,6 +16,14 @@ export enum MoodActionType {
   FETCH_MOODS_REQUEST = '[mood.api] FETCH_MOODS_REQUEST',
   FETCH_MOODS_SUCCESS = '[mood.api] FETCH_MOODS_SUCCESS',
   FETCH_MOODS_FAIL = '[mood.api] FETCH_MOODS_FAIL',
+
+  FETCH_MOOD_BY_ID_REQUEST = '[mood.api] FETCH_MOOD_BY_ID_REQUEST',
+  FETCH_MOOD_BY_ID_SUCCESS = '[mood.api] FETCH_MOOD_BY_ID_SUCCESS',
+  FETCH_MOOD_BY_ID_FAIL = '[mood.api] FETCH_MOOD_BY_ID_FAIL',
+
+  REMOVE_ARTIST_FROM_MOOD_REQUEST = '[mood.api] REMOVE_ARTIST_FROM_MOOD_REQUEST',
+  REMOVE_ARTIST_FROM_MOOD_SUCCESS = '[mood.api] REMOVE_ARTIST_FROM_MOOD_SUCCESS',
+  REMOVE_ARTIST_FROM_MOOD_FAIL = '[mood.api] REMOVE_ARTIST_FROM_MOOD_FAIL',
 }
 
 export const createMoodRequest = createAction(
@@ -48,6 +56,21 @@ export const fetchMoodsFail = createAction(
   props<{ error: Error }>()
 );
 
+export const fetchMoodByIdRequest = createAction(
+  MoodActionType.FETCH_MOOD_BY_ID_REQUEST,
+  props<{ moodId: string }>()
+);
+
+export const fetchMoodByIdSuccess = createAction(
+  MoodActionType.FETCH_MOOD_BY_ID_SUCCESS,
+  props<{ mood: Mood }>()
+);
+
+export const fetchMoodByIdFail = createAction(
+  MoodActionType.FETCH_MOOD_BY_ID_FAIL,
+  props<{ error: Error }>()
+);
+
 export const updateMoodRequest = createAction(
   MoodActionType.UPDATE_MOOD_REQUEST,
   props<{ moodId: string, updatePayload: UpdateMoodPayload }>()
@@ -60,5 +83,20 @@ export const updateMoodSuccess = createAction(
 
 export const updateMoodFail = createAction(
   MoodActionType.UPDATE_MOOD_FAIL,
+  props<{ error: Error }>()
+);
+
+export const removeArtistFromMoodRequest = createAction(
+  MoodActionType.REMOVE_ARTIST_FROM_MOOD_REQUEST,
+  props<{ moodId: string, artistId: string }>()
+);
+
+export const removeArtistFromMoodSuccess = createAction(
+  MoodActionType.REMOVE_ARTIST_FROM_MOOD_SUCCESS,
+  props<{ moodAfterDeletion: Mood }>()
+);
+
+export const removeArtistFromMoodFail = createAction(
+  MoodActionType.REMOVE_ARTIST_FROM_MOOD_FAIL,
   props<{ error: Error }>()
 );

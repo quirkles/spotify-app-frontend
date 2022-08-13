@@ -5,10 +5,19 @@ import {MoodService} from "../../services/spotify";
 import {
   createMoodFail,
   createMoodRequest,
-  createMoodSuccess, fetchMoodsFail,
+  createMoodSuccess,
+  fetchMoodByIdFail,
+  fetchMoodByIdRequest,
+  fetchMoodByIdSuccess,
+  fetchMoodsFail,
   fetchMoodsRequest,
   fetchMoodsSuccess,
-  MoodActionType, updateMoodFail, updateMoodRequest, updateMoodSuccess
+  MoodActionType, removeArtistFromMoodFail,
+  removeArtistFromMoodRequest,
+  removeArtistFromMoodSuccess,
+  updateMoodFail,
+  updateMoodRequest,
+  updateMoodSuccess
 } from "./mood.actions";
 
 @Injectable()
@@ -18,10 +27,10 @@ export class MoodEffects {
       ofType<ReturnType<typeof createMoodRequest>>(MoodActionType.CREATE_MOOD_REQUEST),
       mergeMap((payload) => {
         return this.moodService.createMood(payload.moodName)
-        .pipe(
-          map((response) => createMoodSuccess({ mood: response })),
-          catchError((props) => of(createMoodFail({ error: props.error })))
-        )
+          .pipe(
+            map((response) => createMoodSuccess({mood: response})),
+            catchError((props) => of(createMoodFail({error: props.error})))
+          )
       })
     )
   );
@@ -31,8 +40,20 @@ export class MoodEffects {
       mergeMap((payload) => {
         return this.moodService.fetchMoods(payload.params)
           .pipe(
-            map((response) => fetchMoodsSuccess({ moods: response.moods })),
-            catchError((error) => of(fetchMoodsFail({ error})))
+            map((response) => fetchMoodsSuccess({moods: response.moods})),
+            catchError((error) => of(fetchMoodsFail({error})))
+          )
+      })
+    )
+  );
+
+  fetchMoodById$ = createEffect(() => this.actions$.pipe(
+      ofType<ReturnType<typeof fetchMoodByIdRequest>>(MoodActionType.FETCH_MOOD_BY_ID_REQUEST),
+      mergeMap((payload) => {
+        return this.moodService.fetchMoodById(payload.moodId)
+          .pipe(
+            map((response) => fetchMoodByIdSuccess({mood: response.mood})),
+            catchError((error) => of(fetchMoodByIdFail({error})))
           )
       })
     )
@@ -43,8 +64,23 @@ export class MoodEffects {
       mergeMap((payload) => {
         return this.moodService.updateMood(payload.moodId, payload.updatePayload)
           .pipe(
-            map((response) => updateMoodSuccess({ mood: response.mood })),
-            catchError((error) => of(updateMoodFail({ error})))
+            map((response) => updateMoodSuccess({mood: response.mood})),
+            catchError((error) => of(updateMoodFail({error})))
+          )
+      })
+    )
+  );
+
+  removeArtistFromMood$ = createEffect(() => this.actions$.pipe(
+      ofType<ReturnType<typeof removeArtistFromMoodRequest>>(MoodActionType.REMOVE_ARTIST_FROM_MOOD_REQUEST),
+      mergeMap((payload) => {
+        return this.moodService.removeArtistFromMood({
+          moodId: payload.moodId,
+          artistId: payload.artistId
+        })
+          .pipe(
+            map((response) => removeArtistFromMoodSuccess({moodAfterDeletion: response.mood})),
+            catchError((error) => of(removeArtistFromMoodFail({error})))
           )
       })
     )
@@ -53,5 +89,6 @@ export class MoodEffects {
   constructor(
     private actions$: Actions,
     private moodService: MoodService
-  ) {}
+  ) {
+  }
 }

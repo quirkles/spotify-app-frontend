@@ -1,6 +1,10 @@
-// 
+//
 // type.scss
 //
+
+body {
+  font-family: $font-family-sans-serif;
+}
 
 .h1,
 .h2,
@@ -15,8 +19,9 @@ h4,
 h5,
 h6 {
     margin: 10px 0;
-    font-family: $font-family-secondary;
+    font-family: $font-family-serif;
     color: $text-color-h;
+  font-weight: bold;
 }
 
 
