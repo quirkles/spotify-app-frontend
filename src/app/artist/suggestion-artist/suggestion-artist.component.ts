@@ -5,11 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './suggestion-artist.component.html',
   styleUrls: ['./suggestion-artist.component.scss']
 })
-export class SuggestionArtistComponent implements OnInit {
+export class SuggestionArtistComponent  {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

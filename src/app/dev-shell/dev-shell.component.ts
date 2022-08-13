@@ -5,10 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './dev-shell.component.html',
   styleUrls: ['./dev-shell.component.scss']
 })
-export class DevShellComponent implements OnInit {
+export class DevShellComponent {
 
   constructor() { }
-
-  ngOnInit(): void {}
 
 }
