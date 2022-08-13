@@ -2,9 +2,11 @@ import { StoreModule } from '@ngrx/store';
 import { usersReducer } from './users.reducer';
 import { NgModule } from '@angular/core';
 
-export { usersReducer, UserState } from './users.reducer';
+import {usersFeatureKey} from "./users.selectors";
 
-export const usersFeatureKey = 'users';
+export * from "./users.reducer"
+export * from "./users.actions"
+export * from "./users.selectors"
 
 @NgModule({
   imports: [StoreModule.forFeature(usersFeatureKey, usersReducer)],

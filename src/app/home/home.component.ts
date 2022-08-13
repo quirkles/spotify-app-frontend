@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import {Component, OnInit} from '@angular/core';
+import {Store} from '@ngrx/store';
 
-import { SpotifyApiService } from '../services/spotify/spotify-api.service';
-import { AuthService } from '../services/auth.service';
+import {AuthService} from '../services/auth.service';
 
-import { SpotifyUser } from '../services/spotify/types';
-import { setUserData } from '../store/users/user.actions';
-import {AppStore, UserState} from '../store';
-import { Router } from '@angular/router';
-import { selectById } from '../store/users/users.selectors';
-import { Observable, of } from 'rxjs';
+import {Mood, SpotifyUser, UserService} from "../services/spotify";
+import {setUserData, AppStore, selectUserById, fetchMoodsRequest, listMoods} from '../store';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -18,22 +15,24 @@ import { Observable, of } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   mySpotifyData$: Observable<Partial<SpotifyUser>> = of({});
+
   constructor(
-    private spotifyApiService: SpotifyApiService,
+    private userService: UserService,
     private authService: AuthService,
     private router: Router,
     private store: Store<AppStore>
-  ) {
-    const userSpotifyId = this.authService.userSpotifyId;
-    if (!userSpotifyId) {
-      this.router.parseUrl('/login');
-    } else {
-      this.mySpotifyData$ = this.store.select(selectById(userSpotifyId));
-    }
-  }
+  ) {}
 
   ngOnInit(): void | Promise<boolean> {
-    this.spotifyApiService.getPersonalData().then((resp) =>
+    const userSpotifyId = this.authService.userSpotifyId;
+    if (!userSpotifyId) {
+      return this.router.navigateByUrl('/login');
+    } else if (this.router.url === '/') {
+      return this.router.navigateByUrl('/moods');
+    } else {
+      this.mySpotifyData$ = this.store.select(selectUserById(userSpotifyId));
+    }
+    this.userService.getPersonalData().then((resp) =>
       this.store.dispatch(
         setUserData({
           userSpotifyId: resp.id,

@@ -1,15 +1,23 @@
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { usersFeatureKey, UsersFeatureStore, UserState } from './users';
 import { environment } from '../../environments/environment';
 
+import { usersFeatureKey, UsersFeatureStore, UserState } from './users';
+import { moodFeatureKey, MoodFeatureStore, MoodState } from "./moods";
+
 export * from './users';
+export * from './moods';
 
 export interface AppStore {
   [usersFeatureKey]: UserState;
+  [moodFeatureKey]: MoodState;
 }
 
-const prodStores = [StoreModule.forRoot({}), UsersFeatureStore];
+const prodStores = [
+  StoreModule.forRoot({}),
+  UsersFeatureStore,
+  MoodFeatureStore
+];
 
 export const appStores = environment.production
   ? prodStores

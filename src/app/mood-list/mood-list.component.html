@@ -1,0 +1,12 @@
+<div id="mood-list-page">
+  <div id="add-mood-container">
+    <app-add-mood></app-add-mood>
+  </div>
+  <div id="mood-list-container" (appResized)="handleElResize($event)">
+    <app-mood-list-item
+      *ngFor="let mood of (moods$ | async)"
+      [mood]="mood"
+      [slidesPerView]="slidesPerGroupInItems"
+    ></app-mood-list-item>
+  </div>
+</div>

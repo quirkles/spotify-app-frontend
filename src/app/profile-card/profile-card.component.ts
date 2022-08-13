@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { SpotifyUser } from '../services/spotify/types';
+import { SpotifyUser } from '../services/spotify';
 
 @Component({
   selector: 'app-profile-card',

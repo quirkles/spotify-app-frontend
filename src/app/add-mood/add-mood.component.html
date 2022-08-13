@@ -1,0 +1,8 @@
+<div>
+  <h2>
+    <app-editable [value]="newMoodName" (editStop)="stopEditing()" (editStart)="startEditing()" (newValue)="updateName($event)"></app-editable>
+  </h2>
+  <button *ngIf="!isEditing" class="btn btn-xs btn-success" (click)="createMood()">
+    add mood +
+  </button>
+</div>

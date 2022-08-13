@@ -1,0 +1,29 @@
+<div>
+  <h1>
+    <app-editable
+      value="{{( mood$ | async)?.name }}"
+      (newValue)="handleNameChange($event)"
+      [color]="accentColor"
+    ></app-editable>
+  </h1>
+</div>
+<div>
+  <h3>
+    <app-editable
+      value="{{( mood$ | async)?.description }}"
+      emptyString="No description so far..."
+      (newValue)="handleDescriptionChange($event)"
+    ></app-editable>
+  </h3>
+</div>
+<div class="row">
+  <div
+    class="col-12 col-sm-6 col-md-4 col-lg-3"
+    *ngFor="let artist of (mood$ | async)?.artists"
+  >
+    <app-playlist-artist
+      (deleteArtist)="handleDeleteArtist($event)"
+      [artist]="artist"
+    ></app-playlist-artist>
+  </div>
+</div>

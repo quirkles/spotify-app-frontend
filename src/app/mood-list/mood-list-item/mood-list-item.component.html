@@ -1,0 +1,36 @@
+<div class="card border-{{accentColor}} border mb-3">
+  <div class="card-body">
+    <div>
+      <div class="info-section">
+        <h4 class="card-title">
+          <app-editable [value]="mood.name" [color]="secondaryColor" (newValue)="handleNameChange($event)"></app-editable>
+        </h4>
+        <div>
+          <app-editable
+            [value]="mood.description || null"
+            [color]="tertiaryColor"
+            emptyString="No description yet!"
+            (newValue)="handleDescriptionChange($event)"
+          ></app-editable>
+        </div>
+      </div>
+      <div class="artist-thumb-section" style="width: {{slidesPerView * 120}}px">
+        <swiper
+          [autoplay]="{ delay: speed, pauseOnMouseEnter: true, disableOnInteraction: false }"
+          [slidesPerView]="slidesPerView"
+          [slidesPerGroup]="1"
+          [centeredSlides]="true"
+          [spaceBetween]="0"
+          [loop]="true"
+          [initialSlide]=initialSlide
+        >
+          <ng-template swiperSlide *ngFor="let artist of mood.artists"><img src="{{artist.imageUrl}}" alt="{{artist.name}}"></ng-template>
+        </swiper>
+      </div>
+      <div class="controls">
+        <div class="btn btn-{{accentColor}}">play <i class="mdi mdi-play-outline"></i></div>
+        <a routerLink="/moods/{{mood.id}}" class="btn btn-{{tertiaryColor}}">edit <i class="mdi mdi-playlist-edit"></i></a>
+      </div>
+    </div>
+  </div>
+</div>

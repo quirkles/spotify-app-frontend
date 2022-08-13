@@ -1,0 +1,13 @@
+#app-header {
+  height: 210px;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+}
+
+#app-content {
+  height: calc(100vh - 210px);
+  top: 210px;
+  position: fixed;
+  overflow: auto;
+}

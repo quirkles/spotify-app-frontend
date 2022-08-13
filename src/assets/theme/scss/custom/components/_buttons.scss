@@ -16,6 +16,7 @@
 }
 
 .btn {
+    border-radius: $border-radius;
     .mdi {
         &:before {
             margin-top: -1px;
@@ -109,7 +110,12 @@
 .btn-xs {
     padding: 0.2rem 0.6rem;
     font-size: 0.75rem;
-    border-radius: 0.15rem;
+    border-radius: min($border-radius-xs, $border-radius);
+    .btn-label {
+      margin: -0.55rem 0.5rem -0.55rem -0.5rem;
+      padding: 0.4rem 0.7rem;
+      background-color: #{rgba(map-get($grays, "900"), 0.1)};
+    }
 }
 
 //
@@ -158,7 +164,7 @@ body[data-layout-color="dark"] {
     .btn-label {
         background-color: #{rgba(map-get($dark-grays, "900"), 0.1)};
     }
-    
+
     .btn-label-right {
         background-color: #{rgba(map-get($dark-grays, "900"), 0.1)};
     }
